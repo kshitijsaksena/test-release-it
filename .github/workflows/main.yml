@@ -12,16 +12,25 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.AUTH_TOKEN }}
         
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
           cache: 'npm'
+
+      - name: Setup Git user
+        run: |
+          git config --global user.email "kshitij.saksena@gmail.com"
+          git config --global user.name "Kshitij Saksena"
         
       - name: Install release-it
         run: npm install -g release-it
 
       - name: Create release
         run: |
-          release-it --git.commitMessage="release version: v${version}" --git.commitArgs="-n" --github.release=true --github.autoGenerate=true --ci
+          release-it --git.commitMessage="chore release: ${version}" --github.release=true --github.autoGenerate=true --npm.publish=false -VV --ci
+        env:
+          GITHUB_TOKEN: ${{ secrets.AUTH_TOKEN }}
