@@ -23,4 +23,5 @@ jobs:
         run: npm install -g release-it
 
       - name: Create release
-        run: release-it --git.commitMessage="release version: v${version}" --git.commitArgs="-n" --github.release=true --github.autoGenerate --ci
+        run: |
+          release-it --git.commitMessage="release version: v${version}" --git.commitArgs="-n" --github.release=true --github.autoGenerate=true --ci
