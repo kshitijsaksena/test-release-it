@@ -31,6 +31,6 @@ jobs:
 
       - name: Create release
         run: |
-          release-it --git.commitArgs="-n" --github.release=true --github.autoGenerate=true --npm.publish=false -VV --ci
+          release-it --git.commitMessage="chore release: ${version}" --git.commitArgs="-n" --github.release=true --github.autoGenerate=true --npm.publish=false -VV --ci
         env:
           GITHUB_TOKEN: ${{ secrets.AUTH_TOKEN }}
