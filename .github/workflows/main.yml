@@ -18,6 +18,11 @@ jobs:
         with:
           node-version: '20'
           cache: 'npm'
+
+      - name: Setup Git user
+        run: |
+          git config --global user.email "kshitij.saksena@gmail.com"
+          git config --global user.name "Kshitij Saksena"
         
       - name: Install release-it
         run: npm install -g release-it
