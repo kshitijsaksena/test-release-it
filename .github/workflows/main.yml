@@ -12,6 +12,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.AUTH_TOKEN }}
         
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -30,3 +32,5 @@ jobs:
       - name: Create release
         run: |
           release-it --git.commitMessage="release version: v${version}" --git.commitArgs="-n" --github.release=true --github.autoGenerate=true --npm.publish=false --ci
+        env:
+          GITHUB_TOKEN: ${{ secrets.AUTH_TOKEN }}
