@@ -24,4 +24,4 @@ jobs:
 
       - name: Create release
         run: |
-          release-it --git.commitMessage="release version: v${version}" --git.commitArgs="-n" --github.release=true --github.autoGenerate=true --ci
+          release-it --git.commitMessage="release version: v${version}" --git.commitArgs="-n" --github.release=true --github.autoGenerate=true --npm.publish=false --ci
