@@ -1,0 +1,26 @@
+name: Setup Release Environment
+
+on:
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  setup:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+        
+      - name: Install release-it
+        run: npm install -g release-it
+
+      - name: Create release
+        run: release-it --git.commitMessage="release version: v${version}" --git.commitArgs="-n" --github.release=true --github.autoGenerate --ci
